@@ -1,31 +1,33 @@
 ---
-title       : Homework 1 for Stat Inference
-subtitle    : (Use arrow keys to navigate)
-author      : Brian Caffo
-job         : Johns Hopkins Bloomberg School of Public Health
-framework   : io2012
-highlighter : highlight.js  
-hitheme     : tomorrow
-#url:
-#    lib: ../../librariesNew #Remove new if using old slidify
-#    assets: ../../assets
-widgets     : [mathjax, quiz, bootstrap]
-mode        : selfcontained # {standalone, draft}
+title: "Tarefa sobre Inferencia Estatística"
+author: "Design by Brian Caffo - Instrutor David Prata - UFT " 
+subtitle: (Use setas para navegar)
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+  word_document: default
+framework: io2012
+highlighter: highlight.js
+hitheme: tomorrow
+widgets:
+- mathjax
+- quiz
+- bootstrap
+mode: standalone
+job: David
 ---
 
 
-## About these slides
-- These are some practice problems for Statistical Inference Quiz 1
-- They were created using slidify interactive which you will learn in
-Creating Data Products
-- Please help improve this with pull requests here
-(https://github.com/bcaffo/courses)
+## Sobre esses slides
+- Estes são alguns problemas práticos para o Questionário de Inferência Estatística 1
+- Eles foram criados usando slidify interativo que você aprenderá Criar produtos de dados
 
 
 --- &radio
 
-Consider influenza epidemics for two parent heterosexual families. Suppose that the probability is 15% that at least one of the parents has contracted the disease. The probability that the father has contracted influenza is 10% while that the mother contracted the disease is 9%. What is the probability that both contracted influenza expressed as a whole number percentage?
-[Watch a video solution](https://www.youtube.com/watch?v=CvnmoCuIN08&index=1&list=PLpl-gQkQivXhHOcVeU3bSJg78zaDYbP9L)
+Considere epidemias de gripe para famílias heterossexuais com dois pais. Suponha que a probabilidade seja de 15% de que pelo menos um dos pais tenha contraído a doença. A probabilidade de que o pai tenha contraído a gripe é de 10% enquanto que a mãe contraiu a doença é de 9%. Qual é a probabilidade de que ambos contraia gripe como a porcentagem de um número inteiro?
+[veja uma solução no vídeo](https://www.youtube.com/watch?v=CvnmoCuIN08&index=1&list=PLpl-gQkQivXhHOcVeU3bSJg78zaDYbP9L)
 
 1. 15%
 2. 10%
@@ -50,8 +52,8 @@ $$.15 = .10 + .09 - P(AB)$$
 
 ---  &radio
 
-A random variable, $X$, is uniform, a box from $0$ to $1$ of height $1$. (So that its density is $f(x) = 1$ for $0\leq x \leq 1$.) What is its median expressed to two decimal places?
-[Watch a video solution.](https://www.youtube.com/watch?v=UXcarD-1xAM&index=2&list=PLpl-gQkQivXhHOcVeU3bSJg78zaDYbP9L)</p>
+Uma variável aleatória, $X$, é uniforme, uma caixa de $0$ a $1$ de altura $1$. (Para que sua densidade seja $f(x) = 1$ para $0\leq x \leq 1$.) Qual é sua mediana expressa com duas casas decimais?
+[Veja a solução no vídeo](https://www.youtube.com/watch?v=UXcarD-1xAM&index=2&list=PLpl-gQkQivXhHOcVeU3bSJg78zaDYbP9L)</p>
 
 1. 1.00
 2. 0.75
@@ -59,15 +61,15 @@ A random variable, $X$, is uniform, a box from $0$ to $1$ of height $1$. (So tha
 4. 0.25
 
 *** .hint
-The median is the point so that 50% of the density lies below it.
+A mediana é o ponto em que 50% da densidade fica abaixo dela.
 
 *** .explanation
-This density looks like a box. So, notice that $P(X \leq x) = width\times height = x$.
-We want $.5 = P(X\leq x) = x$.
+Esta densidade parece uma caixa. Então, observe que $P(X \leq x) = largura\vezes altura = x$.
+Queremos $.5 = P(X\leq x) = x$.
 
 --- &radio
 
-You are playing a game with a friend where you flip a coin and if it comes up heads you give her  $X$ dollars and if it comes up tails she gives you $Y$ dollars. The odds that the coin is heads is $d$. What is your expected earnings? [Watch a video solution.](https://www.youtube.com/watch?v=5J88Zq0q81o&list=PLpl-gQkQivXhHOcVeU3bSJg78zaDYbP9L&index=3)
+Você está jogando um jogo com um amigo onde você joga uma moeda e se der cara você dá a ela $ X$ dólares e se der coroa ela te dá $Y$ dólares. A probabilidade de a moeda sair cara é $d$. Qual é o seu rendimento esperado? [Assista a uma solução em vídeo.](https://www.youtube.com/watch?v=5J88Zq0q81o&list=PLpl-gQkQivXhHOcVeU3bSJg78zaDYbP9L&index=3)
 
 1. _$-X \frac{d}{1 + d} + Y \frac{1}{1+d} $_
 2. $X \frac{d}{1 + d} + Y \frac{1}{1+d} $
@@ -75,18 +77,18 @@ You are playing a game with a friend where you flip a coin and if it comes up he
 4. $-X \frac{d}{1 + d} - Y \frac{1}{1+d} $
 
 *** .hint
-The odds that you lose on a given round is given by $p / (1 - p) = d$ which implies
-that $p = d / (1 + d)$.
+As chances que você perde em uma determinada rodada são dadas por $p / (1 - p) = d$ o que implica
+onde $p = d / (1 + d)$.
 
 *** .explanation
-You lose $X$ with probability $p = d/(1 +d)$ and you win $Y$ with probability $1-p = 1/(1 + d)$. So your answer is
+Você perde $X$ com probabilidade $p = d/(1 +d)$ e ganha $Y$ com probabilidade $1-p = 1/(1 + d)$. Então sua resposta é 
 $$
 -X \frac{d}{1 + d} + Y \frac{1}{1+d}
 $$
 
 --- &radio
-A random variable takes the value -4 with probability .2 and 1 with probability .8. What
-is the variance of this random variable? [Watch a video solution.](https://www.youtube.com/watch?v=Em-xJeQO1rc&index=4&list=PLpl-gQkQivXhHOcVeU3bSJg78zaDYbP9L)
+Uma variável aleatória assume o valor -4 com probabilidade 0,2 e 1 com probabilidade 0,8. O que
+é a variância desta variável aleatória? [Veja a solução no vídeo.](https://www.youtube.com/watch?v=Em-xJeQO1rc&index=4&list=PLpl-gQkQivXhHOcVeU3bSJg78zaDYbP9L)
 
 1. 0
 2. _4_
@@ -120,9 +122,9 @@ $$
 
 
 --- &radio
-If $\bar X$ and $\bar Y$ are comprised of $n$ iid random variables arising from distributions
-having  means $\mu_x$ and $\mu_y$, respectively and common variance $\sigma^2$
-what is the variance $\bar X - \bar Y$? [Watch a video solution of this problem.](https://www.youtube.com/watch?v=7zJhPzX6jns&list=PLpl-gQkQivXhHOcVeU3bSJg78zaDYbP9L&index=5)
+Se $\bar X$ e $\bar Y$ são compostos por $n$ iid variáveis ​​aleatórias decorrentes de distribuições
+tendo significa $\mu_x$ e $\mu_y$, respectivamente e variância comum $\sigma^2$
+qual é a variância $\bar X - \bar Y$? [Assista a um vídeo da solução deste problema.](https://www.youtube.com/watch?v=7zJhPzX6jns&list=PLpl-gQkQivXhHOcVeU3bSJg78zaDYbP9L&index=5)
 
 1. 0
 2. _$2\sigma^2/n$_
@@ -138,8 +140,8 @@ Var(\bar X - \bar Y) = Var(\bar X) + Var(\bar Y) = \sigma^2 / n + \sigma^2 / n
 $$
 
 --- &radio
-Let $X$ be a random variable having standard deviation $\sigma$. What can
-be said about $X /\sigma$? [Watch a video solution of this problem.](https://www.youtube.com/watch?v=0WUj18_BUPA&list=PLpl-gQkQivXhHOcVeU3bSJg78zaDYbP9L&index=6)
+Seja $X$ uma variável aleatória com desvio padrão $\sigma$. O que pode
+ser dito sobre $X /\sigma$? [Assista a um vídeo da solução deste problema.](https://www.youtube.com/watch?v=0WUj18_BUPA&list=PLpl-gQkQivXhHOcVeU3bSJg78zaDYbP9L&index=6)
 
 1. Nothing
 2. _It must have variance 1._
@@ -154,28 +156,28 @@ $$Var(X / \sigma) = Var(X) / \sigma^2 = 1$$
 
 
 --- &radio
-If a continuous density that never touches the horizontal axis is symmetric about zero, can we say that its associated median is zero? [Watch a video solution.](https://www.youtube.com/watch?v=sn48CGH_TXI&list=PLpl-gQkQivXhHOcVeU3bSJg78zaDYbP9L&index=7)
+Se uma densidade contínua que nunca toca o eixo horizontal é simétrica em relação a zero, podemos dizer que sua mediana associada é zero? [Assista a uma solução em vídeo.](https://www.youtube.com/watch?v=sn48CGH_TXI&list=PLpl-gQkQivXhHOcVeU3bSJg78zaDYbP9L&index=7)
 
 1. _Yes_
 2. No.
 3. It can not be determined given the information given.
 
 *** .explanation
-This is a surprisingly hard problem. The easy explanation is that 50% of the probability
-is below 0 and 50% is above so yes. However, it is predicated on the density not being
-a flat line at 0 around 0. That's why the caveat that it never touches the horizontal axis
-is important.
+Este é um problema surpreendentemente difícil. A explicação fácil é que 50% da probabilidade
+está abaixo de 0 e 50% está acima, então sim. No entanto, é baseado na densidade não sendo
+uma linha plana em 0 em torno de 0. É por isso que a ressalva de que ela nunca toca o eixo horizontal
+é importante.
 
 
 --- &radio
 
-Consider the following pmf given in R
+Considere a seguinte pmf dada em R
 
 ```r
 p <- c(.1, .2, .3, .4)
 x <- 2 : 5
 ```
-What is the variance expressed to 1 decimal place? [Watch a solution to this problem.](https://www.youtube.com/watch?v=sn48CGH_TXI&list=PLpl-gQkQivXhHOcVeU3bSJg78zaDYbP9L&index=7)
+Qual é a variância expressa com 1 casa decimal? [Assista a uma solução para este problema.](https://www.youtube.com/watch?v=sn48CGH_TXI&list=PLpl-gQkQivXhHOcVeU3bSJg78zaDYbP9L&index=7)
 
 1. _1.0_
 2. 4.0
@@ -183,7 +185,7 @@ What is the variance expressed to 1 decimal place? [Watch a solution to this pro
 4. 17.0
 
 *** .hint
-The variance is $E[X^2] - E[X]^2$
+A variância é $E[X^2] - E[X]^2$
 
 *** .explanation
 

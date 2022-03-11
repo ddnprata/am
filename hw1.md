@@ -14,7 +14,7 @@ widgets:
 - mathjax
 - quiz
 - bootstrap
-mode: standalone
+mode: selfcontained
 job: David
 ---
 

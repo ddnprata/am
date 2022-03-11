@@ -14,7 +14,7 @@ widgets:
 - mathjax
 - quiz
 - bootstrap
-mode: standalone
+mode: selfcontained
 job: David
 ---
 ```{r setup, cache = F, echo = F, message = F, warning = F, tidy = F, results='hide'}

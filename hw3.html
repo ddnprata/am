@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Trabalho 3 de Inferência Estatística</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Trabalho 3 de Inferência Estatística">
+  <meta name="author" content="Design by Brian Caffo">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/quiz/css/demo.css"></link>
+<link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  
+  <hgroup class="auto-fadein">
+    <h1>Trabalho 3 de Inferência Estatística</h1>
+    <h2>(Use the arrow keys to navigate)</h2>
+    <p>Design by Brian Caffo<br/>David Prata - UFT</p>
+  </hgroup>
+  
+  <article></article>  
+  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  
+  <hgroup>
+    <h2>Sobre esses slides</h2>
+  </hgroup>
+  
+  <article data-timings="">
+    <ul>
+<li>Estes são alguns problemas práticos para o Questionário de Inferência Estatística 3</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz-text quiz-multitext well">
+  <p>Carregue o conjunto de dados <code>mtcars</code> no pacote R <code>datasets</code>. Calcular um
+Intervalo de confiança de 95% para o MPG mais próximo para a variável <code>mpg</code>.</p>
+
+<ol>
+<li>Qual é o ponto final inferior do intervalo?</li>
+<li>Qual é o ponto final superior do intervalo?</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>Faça <code>library(datasets)</code> e depois <code>data(mtcars)</code> para pegar os dados.
+Considere <code>t.test</code> para os calculos. Você deve ter instalado o datasets package.</p>
+
+</div>
+
+<div class="quiz-explanation">
+  <pre><code class="r">library(datasets); data(mtcars)
+round(t.test(mtcars$mpg)$conf.int)
+</code></pre>
+
+<pre><code>[1] 18 22
+attr(,&quot;conf.level&quot;)
+[1] 0.95
+</code></pre>
+
+<p><span class="answer">18</span>
+<span class="answer">22</span></p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz-text quiz-multitext well">
+  <p>Suponha que o desvio padrão de 9 diferenças pareadas seja $ 1 $. Que valor teria que ser a diferença média para que o ponto final inferior de 95%
+do intervalo de confiança t student chegue a zero?</p>
+
+<ol>
+<li>Dê o número aqui com duas casas decimais</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>O intervalo t é \(\bar x \pm t_{.975, 8} * s /\sqrt{n}\)</p>
+
+</div>
+
+<div class="quiz-explanation">
+  <p><span class="answer">0.77</span></p>
+
+<p>queremos \(\bar x = t_{.975,8} * s / \sqrt{n}\)</p>
+
+<pre><code class="r">round(qt(.975, df = 8) * 1 / 3, 2)
+</code></pre>
+
+<pre><code>[1] 0.77
+</code></pre>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz quiz-single well ">
+  <p>Um intervalo T de Student de grupo independente é usado em vez de
+um intervalo T pareado quando:</p>
+
+<ol>
+<li>As observações são pareadas entre os grupos.</li>
+<li><em>As observações entre os grupos são naturalmente consideradas estatisticamente independentes</em></li>
+<li>Contanto que você faça isso corretamente, qualquer uma está bem.</li>
+<li>São necessários mais detalhes para responder a esta pergunta</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>Um intervalo pareado é para observações pareadas.</p>
+
+</div>
+
+<div class="quiz-explanation">
+  <p>Não podemos pareá-los se os grupos são independentes uns dos outros, bem como independentes entre si.</p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz-text quiz-multitext well">
+  <p>Considere o conjunto de dados <code>mtcars</code>. Construa um intervalo T de 95% para MPG comparando
+Carros de 4 a 6 cilindros (subtraindo na ordem de 4 - 6)
+assumir uma variância constante.</p>
+
+<ol>
+<li>Qual é o ponto final inferior do intervalo até 1 casa decimal?</li>
+<li>Qual é o ponto final superior do intervalo até 1 casa decimal?</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>Use <code>t.test</code> com <code>var.equal=TRUE</code></p>
+
+</div>
+
+<div class="quiz-explanation">
+  <pre><code class="r">m4 &lt;- mtcars$mpg[mtcars$cyl == 4]
+m6 &lt;- mtcars$mpg[mtcars$cyl == 6]
+#this does 4 - 6
+confint &lt;- as.vector(t.test(m4, m6, var.equal = TRUE)$conf.int)
+</code></pre>
+
+<p><span class="answer">3.2</span>
+<span class="answer">10.7</span></p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz quiz-single well ">
+  <p>Se alguém apontasse uma arma para sua cabeça e dissesse &quot;Seu intervalo de confiança
+deve conter o que está estimando ou eu vou puxar o gatilho&quot;, qual
+seria a coisa inteligente a fazer?</p>
+
+<ol>
+<li><em>Faça seu intervalo o mais amplo possível</em></li>
+<li>Faça o seu intervalo o menor possível</li>
+<li>Ligue para as autoridades</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>oppsssss. Você não precisa de dica</p>
+
+</div>
+
+<div class="quiz-explanation">
+  <p>Este é apenas um exemplo do que acontece com os intervalos de confiança quando você
+aumentar o nível de confiança. Você quer ter certeza em seu intervalo (ou seja,
+tem um nível de confiança grande) e assim você aumentaria a largura do intervalo</p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz quiz-single well ">
+  <p>Consulte a comparação de MPG para 4 versus 6 cilindros. O que você conclui?</p>
+
+<ol>
+<li>O intervalo está acima de zero, sugerindo que 6 é melhor que 4 em termos de MPG</li>
+<li><em>O intervalo está acima de zero, sugerindo que 4 é melhor que 6 em termos de MPG</em></li>
+<li>O intervalo não diz nada sobre o teste de hipóteses; você tem que fazer o teste.</li>
+<li>O intervalo contém 0 sugerindo nenhuma diferença.</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>Volte ao problema, considere as implicações do intervalo sendo
+maior que 0, verifique novamente a ordem em que as coisas foram subtraídas e
+certifique-se de que os resultados fazem sentido no contexto do problema.</p>
+
+</div>
+
+<div class="quiz-explanation">
+  <p>O intervalo foi realizado subtraindo 4 - 6 e ficou totalmente acima de zero.</p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz-text quiz-multitext well">
+  <p>Suponha que 18 indivíduos obesos foram randomizados, 9 cada, para uma nova pílula de dieta e um placebo. Os índices de massa corporal (IMCs) dos indivíduos foram medidos na linha de base e novamente após terem recebido o tratamento ou placebo por quatro semanas. A diferença média do acompanhamento para a linha de base (acompanhamento - linha de base) foi de 3 kg/m2 para o grupo tratado e 1 kg/m2 para o grupo placebo. Os desvios padrão correspondentes das diferenças foram de 1,5 kg/m2 para o grupo de tratamento e 1,8 kg/m2 para o grupo placebo. O estudo visa responder se a mudança no IMC ao longo do período de quatro semanas parece diferir entre os grupos tratado e placebo.</p>
+
+<ol>
+<li>Qual é a estimativa de variância agrupada? (com 2 casas decimais)</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>Os tamanhos das amostras são iguais, então a variância agrupada é a média das
+variações individuais</p>
+
+</div>
+
+<div class="quiz-explanation">
+  <pre><code class="r">n1 &lt;- n2 &lt;- 9
+x1 &lt;- -3  ##treated
+x2 &lt;- 1  ##placebo
+s1 &lt;- 1.5  ##treated
+s2 &lt;- 1.8  ##placebo
+spsq &lt;- ( (n1 - 1) * s1^2 + (n2 - 1) * s2^2) / (n1 + n2 - 2)
+</code></pre>
+
+<p><span class="answer">2.74</span></p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz quiz-single well ">
+  <p>Para dados binomiais, a estimativa de máxima verossimilhança para a probabilidade de
+um sucesso é</p>
+
+<ol>
+<li><em>A proporção de sucessos</em></li>
+<li>A proporção de falhas</li>
+<li>Uma versão reduzida da proporção de sucessos</li>
+<li>Uma versão reduzida da proporção de falhas</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>Reveja as notas sobre a probabilidade.</p>
+
+</div>
+
+<div class="quiz-explanation">
+  <p>A EMV para dados binomiais é sempre a proporção de sucessos.</p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz quiz-single well ">
+  <p>A inferência bayesiana requer</p>
+
+<ol>
+<li>Uma taxa de erro tipo I</li>
+<li>Definindo seu nível de confiança</li>
+<li><em>Atribuindo uma distribuição de probabilidade anterior</em></li>
+<li>Avaliando as taxas de erro de frequência</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-explanation">
+  <p>Todas as outras respostas discutem conceitos frequentistas. Todas as análises Bayesianas que exigem a definição de um prior.</p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Sobre esses slides'>
+         1
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='NA'>
+         2
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='NA'>
+         3
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='NA'>
+         4
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='NA'>
+         5
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='NA'>
+         6
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='NA'>
+         7
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='NA'>
+         8
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='NA'>
+         9
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='NA'>
+         10
+      </a>
+    </li>
+    
+    </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/quiz/js/jquery.quiz.js"></script>
+<script src="libraries/widgets/quiz/js/mustache.min.js"></script>
+<script src="libraries/widgets/quiz/js/quiz-app.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  
+<script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+
+  
+  <script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

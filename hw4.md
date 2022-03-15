@@ -1,5 +1,5 @@
 ---
-title       : Traalho 4 para inferência estatística
+title       : Trabalho 4 para inferência estatística
 subtitle    : (Use arrow keys to navigate)
 author      : Design by Brian Caffo, Instructor David Prata
 job         : UFT

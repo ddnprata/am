@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Traalho 4 para inferência estatística</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Traalho 4 para inferência estatística">
+  <meta name="author" content="Design by Brian Caffo, Instructor David Prata">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="../../librariesNew/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="../../librariesNew/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="../../librariesNew/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="../../librariesNew/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="../../librariesNew/widgets/quiz/css/demo.css"></link>
+<link rel=stylesheet href="../../librariesNew/widgets/bootstrap/css/bootstrap.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="../../librariesNew/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="../../librariesNew/frameworks/io2012/js/slides" 
+    src="../../librariesNew/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  
+  <hgroup class="auto-fadein">
+    <h1>Traalho 4 para inferência estatística</h1>
+    <h2>(Use arrow keys to navigate)</h2>
+    <p>Design by Brian Caffo, Instructor David Prata<br/>UFT</p>
+  </hgroup>
+  
+  <article></article>  
+  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  
+  <hgroup>
+    <h2>Sobre esses  slides</h2>
+  </hgroup>
+  
+  <article data-timings="">
+    <ul>
+<li>Alguns problemas práticos de Inferência Estatística</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz-text quiz-multitext well">
+  <p>Carregue o conjunto de dados <code>mtcars</code> no pacote R <code>datasets</code>. Suponha que o conjunto de dados mtcars seja uma amostra aleatória. Calcule o MPG médio, \(\bar x,\) desta amostra.</p>
+
+<p>Você quer testar se o verdadeiro MPG é \(\mu_0\) ou menor usando um
+teste de nível de 5%. (\(H_0 : \mu = \mu_0\) versus \(H_a : \mu < \mu_0\)).
+Usando esse conjunto de dados e um teste Z:</p>
+
+<ol>
+<li class=''>Com base no MPG médio da amostra \(\bar x,\) e usando um teste Z: qual é o menor valor de \(\mu_0\) que você rejeitaria (até duas casas decimais)?</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>Esta é uma inversão de um teste de hipótese unilateral. Ele produz limites confiança
+. (Observe que a inversão de um teste de duas caudas produz intervalos de confiança.)
+Pense na derivação do intervalo de confiança.</p>
+
+</div>
+
+<div class="quiz-explanation">
+  <p>queremos resolver
+\[
+\frac{\sqrt{n}(\bar{X} - \mu_0)}{s} = Z_{0.05}
+\]
+Ou \[\mu_0 = \bar{X} - Z_{0.05} s / \sqrt{n} = \bar{X} + Z_{0.95} s / \sqrt{n}\] Note que o quantil é negativo.</p>
+
+<pre><code class="r">mn &lt;- mean(mtcars$mpg)
+s &lt;- sd(mtcars$mpg)
+z &lt;- qnorm(.05)
+mu0 &lt;- mn - z * s / sqrt(nrow(mtcars))
+</code></pre>
+
+<p>Observe que é fácil tropeçar nesse problema com os sinais. Se você receber um valor menor que \(\bar X\), então claramente está errado, já que você nunca rejeitaria por
+\(H_0:\mu = \mu_0\) versus \(H_a : \mu < \mu_0\) se \(\mu_0\) sendo menor que sua média observada.
+Observe também que a resposta para &quot;Qual é o maior valor para o qual você rejeitaria?&quot; é
+infinita.</p>
+
+<p><span class="answer">21.84</span<></p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz-text quiz-multitext well">
+  <p>Considere novamente o conjunto de dados <code>mtcars</code>. Use um teste t de dois grupos para testar
+a hipótese de que os carros de 4 e 6 cilindradas têm o mesmo mpg. Usar
+um teste bilateral com variâncias desiguais.</p>
+
+<ol>
+<li>Você rejeita no nível de 5% (digite 0 para não, 1 para sim).</li>
+<li>Qual é o valor P com 4 casas decimais expresso em proporção?</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>Use <code>t.test</code> com as opções <code>var.equal=FALSE</code>, <code>paired=FALSE</code>, <code>altnernative</code> como <code>two.sided</code>.</p>
+
+</div>
+
+<div class="quiz-explanation">
+  <pre><code class="r">m4 &lt;- mtcars$mpg[mtcars$cyl == 4]
+m6 &lt;- mtcars$mpg[mtcars$cyl == 6]
+p &lt;- t.test(m4, m6, paired = FALSE, alternative=&quot;two.sided&quot;, var.equal=FALSE)$p.value
+</code></pre>
+
+<p>A resposta para 1. é <span class="answer">1</span> <br>
+A resposta para 2. é <span class="answer">4e-04</span></p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz-text quiz-multitext well">
+  <p>Uma amostra de 100 homens produziu um nível médio de PSA de 3,0 com um dp de 1,1. Qual é o conjunto completo de valores que um teste Z bilateral de 5% de \(H_0 : \mu = \mu_0\)
+falharia em rejeitar a hipótese nula?</p>
+
+<ol>
+<li>Insira o valor mais baixo com 2 casas decimais.</li>
+<li>Insira o valor superior com 2 casas decimais.</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>Isso é equivalente ao intervalo de confiança.</p>
+
+</div>
+
+<div class="quiz-explanation">
+  <p>A resposta para  1 é
+ <span class="answer">2.78</span><br>
+A resposta para to 2 é <span class="answer">3.22</span></p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz-text quiz-multitext well">
+  <p>Você acredita que a moeda que está jogando é tendenciosa para a cara. Você obtém 55 caras de 100 viradas.</p>
+
+<ol>
+<li>Qual é o valor de p relevante exato com 4 casas decimais (expresso como proporção)?</li>
+<li>Você rejeitaria uma hipótese unilateral em \(\alpha = .05\)? (0 para não 1 para sim)?</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>Use <code>pbinom</code> para uma hipótese de que \(p=.5\) veruss \(p>.5\) onde \(p\) é a probabilidade de sucesso binomial.</p>
+
+</div>
+
+<div class="quiz-explanation">
+  <p>Observe que você deve começar em 54, pois <code>lower.tail = FALSE</code> fornece estritamente o maior valor do que
+probabilidades</p>
+
+<pre><code class="r">ans &lt;- round(pbinom(54, prob = .5, size = 100, lower.tail = FALSE),4)
+</code></pre>
+
+<p>A resposta para 1 é <span class="answer">0.1841</span><br>
+A resposta para 2 é <span class="answer">0</span><br></p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz-text quiz-multitext well">
+  <p>Um site web foi monitorado por um ano e recebeu 520 acessos por dia. Nos primeiros
+30 dias do ano seguinte, o site recebeu 15.800 acessos. Supondo que os acessos da web
+são Poisson.</p>
+
+<ol>
+<li>Dê um valor P unilateral exato para a hipótese de que os acessos na web aumentaram este ano em relação ao ano passado com
+quatro algarismos significativos (expresso como uma proporção).</li>
+<li>O teste unilateral rejeita (0 para não 1 para sim)?</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>Considere usar <code>ppois</code> com \(\lambda=520 * 30\). Observe que isso é quase exatamente gaussiano, de forma que você possa escapar do cálculo gaussiano.</p>
+
+</div>
+
+<div class="quiz-explanation">
+  <p>Este teste vem com a importante suposição de que os hits da web são um processo de Poisson.</p>
+
+<pre><code class="r">pv &lt;- ppois(15800 - 1, lambda = 520 * 30, lower.tail = FALSE)
+</code></pre>
+
+<p>A resposta para 1 é <span class="answer">0.0553</span><br>
+A resposta para 2 é <span class="answer">0</span><br></p>
+
+<p>Além disso, compare com a aproximação gaussiana onde \(\hat \lambda  \sim N(\lambda, \lambda / t)\)</p>
+
+<pre><code class="r">pnorm(15800 / 30, mean = 520, sd = sqrt(520 / 30), lower.tail = FALSE)
+</code></pre>
+
+<pre><code>[1] 0.05465729
+</code></pre>
+
+<p>Enquanto \(t\rightarrow \infty\) isso se torna mais gaussiano. A aproximação é muito boa para esse contexto.</p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz-text quiz-multitext well">
+  <p>Suponha que em um teste AB, um esquema de publicidade tenha levado a uma média de 10 compras por dia para uma amostra de 100 dias, enquanto o outro levou a 11 compras por dia, também para uma amostra de 100 dias.
+Assumindo um desvio padrão comum de 4 compras por dia.
+Assumindo que os grupos são independentes e que os dias são iid, faça um teste Z de
+equivalência.</p>
+
+<ol>
+<li>Qual é o valor-P informado com 3 dígitos expresso em proporção?</li>
+<li>Você rejeita o teste? (0 para não 1 para sim).</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>O erro padrão é 
+\[
+s \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}
+\]</p>
+
+</div>
+
+<div class="quiz-explanation">
+  <pre><code class="r">m1 &lt;- 10; m2 &lt;- 11
+n1 &lt;- n2 &lt;- 100
+s &lt;- 4
+se &lt;- s * sqrt(1 / n1 + 1 / n2)
+ts &lt;- (m2 - m1) / se
+pv &lt;- 2 * pnorm(-abs(ts))
+</code></pre>
+
+<p>A resposta para 1 é <span class="answer">0.077</span><br>
+A resposta para 2 é <span class="answer">0</span></p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz quiz-single well ">
+  <p>Um intervalo de confiança para a média contém:</p>
+
+<ol>
+<li><em>Todos os valores da média hipotética para os quais falharíamos em rejeitar com
+\(\alpha = 1 - Conf. Nível\).</em></li>
+<li>Todos os valores da média hipotética para os quais falharíamos em rejeitar com
+\(2 \alpha = 1 - Conf. Nível\).</li>
+<li>Todos os valores da média hipotética para os quais rejeitaríamos com
+\(\alpha = 1 - Conf. Nível\).</li>
+<li>Todos os valores da média hipotética para os quais rejeitaríamos com
+\(2 \alpha = 1 - Conf. Nível\).</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>Isto vem diretamente das notas. Observe que um intervalo de confiança fornece
+valores de \(\mu\) que são suportados pelos dados enquanto um teste rejeita
+para valores de \(\mu\) diferentes de \(\mu_0\). </p>
+
+</div>
+
+<div class="quiz-explanation">
+  <p>A única parte complicada disso é o 2. Observe que um intervalo de 95% corresponde
+para um teste bilateral de nível de 5%. Então isso é \(\alpha = 1 - Conf.Level\). A confusão é que
+tanto para o teste bilateral quanto para o intervalo de confiança, é preciso calcular
+\(Z_{1 - \alpha / 2}\) (ou o quantil T relevante).</p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz-text quiz-multitext well">
+  <p>Considere os dois problemas anteriores. Supondo que 10 compras por dia seja um valor nulo de referência,
+que os dias são iid e que o desvio padrão é de 4 compras por dia. Suponha que você
+planeje uma amostragem de 100 dias. Qual seria a potência para um 5% unilateral de
+Teste Z de significância sendo que as compras por dia
+aumentariam sob a alternativa de \(\mu = 11\) de compra por dia?</p>
+
+<ol>
+<li>Dê seu resultado com proporção de 3 casas decimais.</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>Sob \(H_0\) \(\bar X \sim N(10, .4)\). Sob \(H_a\) \(\bar X \sim N(11, .4)\). rejeitamos quando \(\bar X \geq 10 + Z_{.95} .4\).</p>
+
+</div>
+
+<div class="quiz-explanation">
+  <p>A dica praticamente entrega.</p>
+
+<pre><code class="r">power &lt;- pnorm(10 + qnorm(.95) * .4, mean = 11, sd = .4, lower.tail = FALSE)
+</code></pre>
+
+<p>A resposta é <span class="answer">0.804</span></p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz-text quiz-multitext well">
+  <p>Os pesquisadores gostariam de realizar um estudo de adultos saudáveis ​​para detectar uma perda média de volume cerebral de quatro anos de 0,01 mm3. Suponha que o desvio padrão da perda de volume de quatro anos nesta população seja de 0,04 mm3.</p>
+
+<ol>
+<li>Qual é o tamanho de amostra necessário para o estudo para um teste unilateral de 5% versus uma hipótese nula de nenhuma perda de volume para atingir 80% de potência? (Sempre arredondar para cima)</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>Sob \(H_0\) \(\bar X\) is \(N(0, .05 / \sqrt{n})\) e é \(N(.01, .05 / \sqrt{n})\) under \(H_a\). 
+rejeitamos se 
+\[
+\bar X \geq  Z_{.95} s / sqrt{n}
+\] 
+que tem probabilidade 0,05 abaixo de \(H_0\). Sob \(H_a\) tem probabilidade
+\[
+P\left( \frac{\bar X - 0.01}{s / \sqrt{n}} \geq  \frac{.01}{s / \sqrt{n}} + z_{.95} \right)
+= P\left( Z \geq \frac{.01}{s / \sqrt{n}} + z_{.95}\right)
+\]</p>
+
+</div>
+
+<div class="quiz-explanation">
+  <p>Olhando para a dica definimos
+\[
+\frac{.01}{s / \sqrt{n}} + z_{.95} = z_{.2}
+\]
+\[
+n = \frac{(z_{.95} - z_{.2})^2 s^2}{.01^2} = \frac{ (z_{.95} + z_{.8})^2 s^2}{.01^2}
+\]
+So we get</p>
+
+<pre><code class="r">n &lt;- (qnorm(.95) + qnorm(.8)) ^ 2 * .04 ^ 2 / .01^2
+</code></pre>
+
+<p>A resposta é <span class="answer">99</span></p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz quiz-single well ">
+  <p>Em um tribunal de justiça, sendo todas as coisas iguais, se por meio de apólice você exigir um
+padrão de evidência para condenar as pessoas então</p>
+
+<ol>
+<li>Pessoas menos culpadas serão condenadas.</li>
+<li><em>Mais inocentes serão condenados.</em></li>
+<li>Mais inocentes não serão condenados.</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>Pense sobre isto.</p>
+
+</div>
+
+<div class="quiz-explanation">
+  <p>Se você precisar de menos provas para condenar, então você condenará mais pessoas, culpadas e
+inocentes. Relacione essa propriedade de volta aos testes de hipóteses.</p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz-text quiz-multitext well">
+  <p>Considere o conjunto de dados <code>mtcars</code>.</p>
+
+<ol>
+<li>Dê o valor p para um teste t comparando MPG para carros de 6 e 8 cilindros assumindo variância igual, com proporção de 3 casas decimais.</li>
+<li>Dê o valor P associado para um teste z.</li>
+<li>Dê a estimativa de desvio padrão comum (agrupado) para MPG entre cilindros com 3 casas decimais.</li>
+<li>O teste t rejeitaria no nível 0,05 bilateral (0 para não 1 para sim)?</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <pre><code class="r">mpg8 &lt;- mtcars$mpg[mtcars$cyl == 8]
+mpg6 &lt;- mtcars$mpg[mtcars$cyl == 6]
+m8 &lt;- mean(mpg8); m6 &lt;- mean(mpg6)
+s8 &lt;- sd(mpg8); s6 &lt;- sd(mpg6)
+n8 &lt;- length(mpg8); n6 &lt;- length(mpg6)
+</code></pre>
+
+</div>
+
+<div class="quiz-explanation">
+  <pre><code class="r">p &lt;- t.test(mpg8, mpg6, paired = FALSE, alternative=&quot;two.sided&quot;, var.equal=TRUE)$p.value
+mixprob &lt;- (n8 - 1) / (n8 + n6 - 2)
+s &lt;- sqrt(mixprob * s8 ^ 2  +  (1 - mixprob) * s6 ^ 2)
+z &lt;- (m8 - m6) / (s * sqrt(1 / n8 + 1 / n6))
+pz &lt;- 2 * pnorm(-abs(z))
+## Hand calculating the T just to check
+#2 * pt(-abs(z), df = n8 + n6 - 2)
+</code></pre>
+
+<ol>
+<li><span class="answer">0</span> <br></li>
+<li><span class="answer">0</span><br></li>
+<li><span class="answer">2.27</span><br></li>
+<li><span class="answer">1</span></li>
+</ol>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz quiz-single well ">
+  <p>A correção Bonferonni controla isso</p>
+
+<ol>
+<li>Taxa de descoberta falsa</li>
+<li><em>A taxa de erro familiar</em></li>
+<li>A taxa de rejeições verdadeiras</li>
+<li>O número de rejeições verdadeiras</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>Isso é praticamente direto das notas</p>
+
+</div>
+
+<div class="quiz-explanation">
+  <p>A correção de Bonferonni é a correção clássica para a taxa de erro familiar.</p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Sobre esses  slides'>
+         1
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='NA'>
+         2
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='NA'>
+         3
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='NA'>
+         4
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='NA'>
+         5
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='NA'>
+         6
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='NA'>
+         7
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='NA'>
+         8
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='NA'>
+         9
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='NA'>
+         10
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='NA'>
+         11
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='NA'>
+         12
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='NA'>
+         13
+      </a>
+    </li>
+    
+    </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="../../librariesNew/widgets/quiz/js/jquery.quiz.js"></script>
+<script src="../../librariesNew/widgets/quiz/js/mustache.min.js"></script>
+<script src="../../librariesNew/widgets/quiz/js/quiz-app.js"></script>
+<script src="../../librariesNew/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../librariesNew/widgets/bootstrap/js/bootbox.min.js"></script>
+
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  
+<script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="../../librariesNew/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+
+  
+  <script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="../../librariesNew/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

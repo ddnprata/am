@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Trabalho 2 para Estatística Inferencial</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Trabalho 2 para Estatística Inferencial">
+  <meta name="author" content="Design by Brian Caffo">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/quiz/css/demo.css"></link>
+<link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  
+  <hgroup class="auto-fadein">
+    <h1>Trabalho 2 para Estatística Inferencial</h1>
+    <h2></h2>
+    <p>Design by Brian Caffo<br/>Professor David Prata - UFT</p>
+  </hgroup>
+  
+  <article></article>  
+  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  
+  <hgroup>
+    <h2>Sobre esses slides</h2>
+  </hgroup>
+  
+  <article data-timings="">
+    <ul>
+<li>Estes são alguns problemas práticos para o Questionário de Inferência Estatística 1</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz quiz-single well ">
+  <p>A probabilidade de um manuscrito ser aceito em um periódico é de 12% (digamos). No entanto,
+dado que uma revisão é solicitada, a probabilidade de que ela seja aceita
+é 90%. É possível que a probabilidade de um manuscrito ter um pedido de revisão
+seja de 20%?</p>
+
+<ol>
+<li>Sim, isso é totalmente possível.</li>
+<li><em>Não, não é possível.</em></li>
+<li>Não é possível responder a esta pergunta.</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>\(A = accepted\), \(B = revision\). \(P(A) = .12\), \(P(A | B) = .90\). \(P(B) = .20\)</p>
+
+</div>
+
+<div class="quiz-explanation">
+  <p>\(P(A \cap B) = P(A | B) * P(B) = .9 \times .2 = .18\) isso é maior que
+\(P(A) = .12\), o que não é possível porque \(A \cap B \subset A\).</p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz quiz-single well ">
+  <p>Suponha que o número de acessos da Web a um determinado site seja aproximadamente normal distribuído com média de 100 acertos por dia e desvio padrão de 10 acertos por dia. Qual é a probabilidade de que um determinado dia tenha menos de 93 acertos por dia expressa como uma porcentagem para o ponto percentual mais próximo?</p>
+
+<ol>
+<li>76%</li>
+<li><em>24%</em></li>
+<li>47%</li>
+<li>94%</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>Seja \(X\) o número acessos por dia. queremos \(P(X \leq 93)\) dado que
+\(X\) seja \(N(100, 10^2)\).</p>
+
+</div>
+
+<div class="quiz-explanation">
+  <pre><code class="r">round(pnorm(93, mean = 100, sd = 10) * 100)
+</code></pre>
+
+<pre><code>[1] 24
+</code></pre>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz quiz-single well ">
+  <p>Suponha que 5% dos projetos habitacionais tenham problemas com amianto. A sensibilidade de um teste
+para amianto é de 93% e a especificidade é de 88%. Qual é a probabilidade de um
+projeto habitacional não ter amianto dado um teste negativo expresso em porcentagem
+para o ponto percentual mais próximo?</p>
+
+<ol>
+<li>0%</li>
+<li>5%</li>
+<li>10%</li>
+<li>20%</li>
+<li>50%</li>
+<li><em>100%</em></li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>\(A = asbestos\), \(T_+ = tests positive\), \(T_- = tests negative\). 
+\(P(T_+ | A) = .93\), \(P(T_- | A^c) = .88\), \(P(A) = .05\).</p>
+
+</div>
+
+<div class="quiz-explanation">
+  <p>queremos
+\[
+P(A^c | T_-) = \frac{P(T_- | A^c) P(A^c)}{P(T_- | A^c) P(A^c) + P(T_- | A) P(A)}
+\]</p>
+
+<pre><code class="r">(.88 * .95) / (.88 * .95 + .07 * .05)
+</code></pre>
+
+<pre><code>[1] 0.9958309
+</code></pre>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz-text quiz-multitext well">
+  <p>Suponha que o número de acessos da Web a um determinado site seja aproximadamente normal
+distribuído com média de 100 acertos por dia e desvio padrão de 10 acertos por dia. </p>
+
+<ol>
+<li>O número de acessos da Web por dia representa o número para que apenas
+5% dos dias tem mais acessos? Expresse sua resposta com 3 casas decimais.</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>Seja \(X\) o número de acessos por dia. queremos \(P(X \leq 93)\) dado que
+\(X\) é \(N(100, 10^2)\).</p>
+
+</div>
+
+<div class="quiz-explanation">
+  <p><span class="answer">116.449</span></p>
+
+<pre><code class="r">round(qnorm(.95, mean = 100, sd = 10), 3)
+</code></pre>
+
+<pre><code>[1] 116.449
+</code></pre>
+
+<pre><code class="r">round(qnorm(.05, mean = 100, sd = 10, lower.tail = FALSE), 3)
+</code></pre>
+
+<pre><code>[1] 116.449
+</code></pre>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz-text quiz-multitext well">
+  <p>Suponha que o número de acessos da Web a um determinado site seja aproximadamente normal
+distribuído com média de 100 acertos por dia e desvio padrão de 10 acertos por dia. Imagine tomar uma amostra aleatória de 50 dias. </p>
+
+<ol>
+<li>Qual seria o número de hits da web
+para ser o ponto em que apenas 5% das médias de 50 dias de tráfego na web tenham mais acessos?
+Expresse sua resposta com 3 casas decimais.</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>Seja \(\bar X\) a média do número de hits por dia para 50 dias de amostras aleatórias.
+\(X\) é \(N(100, 10^2 / 50)\).</p>
+
+</div>
+
+<div class="quiz-explanation">
+  <p><span class="answer">102.326</span></p>
+
+<pre><code class="r">round(qnorm(.95, mean = 100, sd = 10 / sqrt(50) ), 3)
+</code></pre>
+
+<pre><code>[1] 102.326
+</code></pre>
+
+<pre><code class="r">round(qnorm(.05, mean = 100, sd = 10 / sqrt(50), lower.tail = FALSE), 3)
+</code></pre>
+
+<pre><code>[1] 102.326
+</code></pre>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz-text quiz-multitext well">
+  <p>Você não acredita que seu amigo possa distinguir um bom vinho de um barato. Assumindo
+que você está certo, em um teste cego onde você randomiza 6 variedades pareadas (Merlot,
+Chianti, ...) de vinhos baratos e caros</p>
+
+<ol>
+<li>qual é a mudança para obter 5 ou 6 certos expressos em porcentagem
+de uma casa decimal?</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>Seja \(p=.5\) e \(X\) binomial</p>
+
+</div>
+
+<div class="quiz-explanation">
+  <p><span class="answer">89.1</span></p>
+
+<pre><code class="r">round(pbinom(4, prob = .5, size = 6, lower.tail = TRUE) * 100, 1)
+</code></pre>
+
+<pre><code>[1] 89.1
+</code></pre>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz-text quiz-multitext well">
+  <p>Considere uma distribuição uniforme. Se fôssemos amostrar 100 sorteios de um
+uma distribuição uniforme (que tem média 0,5 e variância 1/12)
+e pegar a sua média, \(\bar X\)</p>
+
+<ol>
+<li>qual é a probabilidade aproximada de ficar tão grande quanto 0,51 ou maior expresso com 3 casas decimais?</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>Use o teorema do limite central que diz \(\bar X \sim N(\mu, \sigma^2/n)\)</p>
+
+</div>
+
+<div class="quiz-explanation">
+  <p><span class="answer"> 0.365</span></p>
+
+<pre><code class="r">round(pnorm(.51, mean = 0.5, sd = sqrt(1 / 12 / 100), lower.tail = FALSE), 3)
+</code></pre>
+
+<pre><code>[1] 0.365
+</code></pre>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz-text quiz-multitext well">
+  <p>Se você jogar dez dados padrão, tirar sua média, então repita este processo várias vezes e construa um histograma,</p>
+
+<ol>
+<li>em que seria centrado?</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>\(E[X_i] = E[\bar X]\) where \(\bar X = \frac{1}{n}\sum_{i=1}^n X_i\)</p>
+
+</div>
+
+<div class="quiz-explanation">
+  <p>A resposta será <span class="answer">3,5</span> uma vez que a média da
+distribuição amostral dos sorteios do iid será a média populacional que o
+sorteios individuais foram retirados.</p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz-text quiz-multitext well">
+  <p>Se você jogar dez dados padrão, tirar sua média, então repita este processo várias vezes e construa um histograma,</p>
+
+<ol>
+<li>qual seria sua variância expressa com 3 casas decimais?</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>\[Var(\bar X) = \sigma^2 /n\]</p>
+
+</div>
+
+<div class="quiz-explanation">
+  <p>A resposta será <span class="answer">0</span>
+uma vez que a variância da distribuição amostral da média é \(\sigma^2/12\)
+e a variância de uma jogada de dado é</p>
+
+<pre><code class="r">mean((1 : 6 - 3.5)^2)
+</code></pre>
+
+<pre><code>[1] 2.916667
+</code></pre>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  
+  <article data-timings="">
+    
+<div class="quiz-text quiz-multitext well">
+  <p>O número de acessos da web a um site é Poisson com média de 16,5 por dia.</p>
+
+<ol>
+<li>Qual é a probabilidade de obter 20 ou menos em 2 dias expressa
+como uma porcentagem com uma casa decimal?</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  
+<div class="quiz-hint">
+  <p>Seka \(X\) o número de hits em 2 dias então \(X \sim Poisson(2\lambda)\)</p>
+
+</div>
+
+<div class="quiz-explanation">
+  <p><span class="answer">1</span></p>
+
+<pre><code class="r">round(ppois(20, lambda = 16.5 * 2) * 100, 1)
+</code></pre>
+
+<pre><code>[1] 1
+</code></pre>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+  
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Sobre esses slides'>
+         1
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='NA'>
+         2
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='NA'>
+         3
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='NA'>
+         4
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='NA'>
+         5
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='NA'>
+         6
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='NA'>
+         7
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='NA'>
+         8
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='NA'>
+         9
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='NA'>
+         10
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='NA'>
+         11
+      </a>
+    </li>
+    
+    </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/quiz/js/jquery.quiz.js"></script>
+<script src="libraries/widgets/quiz/js/mustache.min.js"></script>
+<script src="libraries/widgets/quiz/js/quiz-app.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  
+<script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+
+  
+  <script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

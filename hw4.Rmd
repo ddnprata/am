@@ -1,16 +1,21 @@
 ---
-title       : Trabalho 4 para inferência estatística
-subtitle    : (Use arrow keys to navigate)
-author      : Design by Brian Caffo, Instructor David Prata
-job         : UFT
-framework   : io2012
-highlighter : highlight.js  
-hitheme     : tomorrow       
-url:
-    lib: ../../librariesNew #Remove new if using old slidify
-    assets: ../../assets
-widgets     : [mathjax, quiz, bootstrap]
-mode        : selfcontained # {standalone, draft}
+title: "Tarefa 4 sobre Inferencia Estatística"
+author: "Design by Brian Caffo - Instrutor David Prata - UFT " 
+subtitle: (Use setas para navegar)
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+  word_document: default
+framework: io2012
+highlighter: highlight.js
+hitheme: tomorrow
+widgets:
+- mathjax
+- quiz
+- bootstrap
+mode: selfcontained
+job: David
 ---
 ```{r setup, cache = F, echo = F, message = F, warning = F, tidy = F, results='hide'}
 # make this an external chunk that can be included in any file
